@@ -20,7 +20,7 @@ public class PagerTest {
 
     @Test
     public void anEmptyListIsOneEmptyPage() {
-        Pager.Page page = Pager.of(List.of(), 5, 1);
+        Pager.Page<String> page = Pager.of(List.<String>of(), 5, 1);
         assertEquals(1, page.pages());
         assertEquals(List.of(), page.lines());
     }

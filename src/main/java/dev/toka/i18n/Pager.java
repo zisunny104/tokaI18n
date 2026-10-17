@@ -12,7 +12,7 @@ public final class Pager {
      * @param page  the page shown, from 1
      * @param pages the number of pages, at least 1
      */
-    public record Page(List<String> lines, int page, int pages) {
+    public record Page<T>(List<T> lines, int page, int pages) {
     }
 
     private Pager() {
@@ -21,12 +21,12 @@ public final class Pager {
     /**
      * @param requested the page asked for; a number that is too small or too large is moved to the nearest page
      */
-    public static Page of(List<String> all, int perPage, int requested) {
+    public static <T> Page<T> of(List<T> all, int perPage, int requested) {
         int size = Math.max(1, perPage);
         int pages = Math.max(1, (all.size() + size - 1) / size);
         int page = Math.min(Math.max(1, requested), pages);
         int from = Math.min(all.size(), (page - 1) * size);
-        return new Page(List.copyOf(all.subList(from, Math.min(all.size(), from + size))), page, pages);
+        return new Page<>(List.copyOf(all.subList(from, Math.min(all.size(), from + size))), page, pages);
     }
 
     /**
