@@ -1,6 +1,6 @@
 # tokaI18n
 
-**tokaI18n 0.2.1** 是 toka 系列插件共用的多語系小套件，內嵌（shade）進各插件，不增加必裝插件。目前只提供繁體中文（`zh-TW`）；沒有的字會退回 `en-US`，再退回顯示 key。需要 Java 21。
+**tokaI18n 0.2.2** 是 toka 系列插件共用的多語系小套件，內嵌（shade）進各插件，不增加必裝插件。目前只提供繁體中文（`zh-TW`）；沒有的字會退回 `en-US`，再退回顯示 key。需要 Java 21。
 
 ## 使用方式
 
@@ -19,6 +19,7 @@ List<String> help = messages.lines("help.home");      // 多行說明（YAML 清
 
 ## 版本紀錄
 
+- 0.2.2：YAML 改用 SafeConstructor；查字與參數替換少做不必要的工作；install 拒絕離開資料夾的檔名。
 - 0.2.1：Pager 可用於任何清單。
 - 0.2.0：新增 Pager，用於 help 與清單分頁。
 - 0.1.0：共用文字（位置參數）、語言退回、可覆蓋的語系檔。

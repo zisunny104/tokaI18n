@@ -15,6 +15,8 @@ public final class Pager {
     public record Page<T>(List<T> lines, int page, int pages) {
     }
 
+    private static final java.util.regex.Pattern NUMBER = java.util.regex.Pattern.compile("[0-9]{1,6}");
+
     private Pager() {
     }
 
@@ -33,7 +35,7 @@ public final class Pager {
      * @return the number in the text, or the fallback when it is empty or not a number
      */
     public static int parse(String text, int fallback) {
-        if (text == null || !text.strip().matches("[0-9]{1,6}")) {
+        if (text == null || !NUMBER.matcher(text.strip()).matches()) {
             return fallback;
         }
         return Integer.parseInt(text.strip());

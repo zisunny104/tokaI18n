@@ -9,6 +9,9 @@ public final class Locales {
     public static final String ZH_TW = "zh-TW";
     public static final String EN_US = "en-US";
 
+    private static final java.util.regex.Pattern LANGUAGE = java.util.regex.Pattern.compile("[A-Za-z]{2,3}");
+    private static final java.util.regex.Pattern REGION = java.util.regex.Pattern.compile("[A-Za-z]{2}");
+
     private Locales() {
     }
 
@@ -20,7 +23,7 @@ public final class Locales {
             return fallback;
         }
         String[] parts = name.strip().replace('_', '-').split("-");
-        if (parts.length != 2 || !parts[0].matches("[A-Za-z]{2,3}") || !parts[1].matches("[A-Za-z]{2}")) {
+        if (parts.length != 2 || !LANGUAGE.matcher(parts[0]).matches() || !REGION.matcher(parts[1]).matches()) {
             return fallback;
         }
         return parts[0].toLowerCase(Locale.ROOT) + "-" + parts[1].toUpperCase(Locale.ROOT);

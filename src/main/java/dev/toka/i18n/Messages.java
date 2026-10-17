@@ -1,6 +1,8 @@
 package dev.toka.i18n;
 
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +59,7 @@ public final class Messages {
         return this.language;
     }
 
-    public void language(String language) {
+    public synchronized void language(String language) {
         this.language = Locales.normalize(language, this.language);
         this.reload();
     }
@@ -92,7 +94,7 @@ public final class Messages {
                 return;
             }
             try (Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
-                Object root = new Yaml().load(reader);
+                Object root = new Yaml(new SafeConstructor(new LoaderOptions())).load(reader);
                 if (root instanceof Map<?, ?> map) {
                     flatten("", map, table);
                 }
@@ -171,6 +173,9 @@ public final class Messages {
     }
 
     private String fill(String key, String template, Object[] arguments) {
+        if (!template.contains("${")) {
+            return template;
+        }
         Matcher matcher = ARGUMENT.matcher(template);
         StringBuilder out = new StringBuilder();
         while (matcher.find()) {
@@ -206,7 +211,10 @@ public final class Messages {
      * @return true when the file was written
      */
     public boolean install(String name) throws IOException {
-        Path target = this.folder.resolve(name);
+        Path target = this.folder.resolve(name).normalize();
+        if (!target.startsWith(this.folder.normalize())) {
+            throw new IllegalArgumentException("File name leaves the data folder: " + name);
+        }
         if (Files.exists(target)) {
             return false;
         }
