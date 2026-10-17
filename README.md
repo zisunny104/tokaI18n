@@ -1,6 +1,6 @@
 # tokaI18n
 
-**tokaI18n 0.2.2** 是 toka 系列插件共用的多語系小套件，內嵌（shade）進各插件，不增加必裝插件。目前只提供繁體中文（`zh-TW`）；沒有的字會退回 `en-US`，再退回顯示 key。需要 Java 21。
+**tokaI18n 0.2.3** 是 toka 系列插件共用的多語系小套件，內嵌（shade）進各插件，不增加必裝插件。目前只提供繁體中文（`zh-TW`）；沒有的字會退回 `en-US`，再退回顯示 key。需要 Java 21。
 
 ## 使用方式
 
@@ -14,11 +14,13 @@ List<String> help = messages.lines("help.home");      // 多行說明（YAML 清
 - 語系檔在 jar 的 `lang/zh-TW.yml`；伺服器擁有者可把同名檔放進 `plugins/<插件>/lang/` 覆蓋個別文字。
 - 參數 `${0}`、`${1}` 只替換一次，傳入字串中的 `${…}` 不會再展開；缺參數時保留 `${n}` 並限流警告。
 - 查字順序：選定語言、`en-US`、key 本身（只警告一次）。
+- `NumberText.withCommas(12345L)` 回傳 `12,345`，負數亦正確。
 - `messages.install("config.yml")`：把設定檔範本放進資料夾（不覆蓋）。
 - `Pager.of(全部行, 每頁行數, 頁碼)` 回傳該頁的行、頁碼與總頁數；`Pager.parse(參數, 預設)` 把指令參數轉成頁碼。頁尾文字慣例 key 為 `ui.page.footer`。
 
 ## 版本紀錄
 
+- 0.2.3：新增 NumberText.withCommas(long)，千分位格式不受伺服器地區影響。
 - 0.2.2：YAML 改用 SafeConstructor；查字與參數替換少做不必要的工作；install 拒絕離開資料夾的檔名。
 - 0.2.1：Pager 可用於任何清單。
 - 0.2.0：新增 Pager，用於 help 與清單分頁。
