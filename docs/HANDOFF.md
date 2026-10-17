@@ -11,6 +11,13 @@
 - tokaI18n 新增 `Pager`（分頁）；tokaPortal 的 `/portal help [頁]` 列出所有傳送指令、缺少的 zero 功能（顯示「未啟用：…」），以及已安裝的 tokaWorlds、tokaSigns 指令；每頁行數 config `help-lines-per-page`（預設 8）。主控台也可用。
 - 其餘插件的 help 目前仍是單頁；內容變長時改用 `Pager`，頁尾 key 用 `ui.page.footer`。下一步建議：tokaSigns（`help.sign` 已 23 行）、tokaDiscordLink、tokaWorlds 先改成分頁。
 
+## 選單視窗改版（tokaPortal 2.5.0，已 commit、**尚未部署**）
+
+- 視窗全部改用按鈕索引（不再比對標題／按鈕文字）；清單有返回、空清單有說明、超過一頁自動分頁，清單長時出現「搜尋／排序／每頁數量」視窗（核心 Custom 表單：Input、Dropdown、Slider）。設計與核心元件對照見 `tokaPortal/docs/WINDOWS.md`；config 新增 `window-items-per-page`、`window-items-min`、`window-items-max`、`window-search-threshold`。SHOPBOX 為專有名詞，不翻譯。
+- tokaI18n 0.2.1：`Pager` 改為泛型。
+- YAML 陷阱說明：SnakeYAML 照 YAML 1.1，沒加引號的 `yes/no/on/off` 會被讀成布林，key 變成 `true`/`false`，語系檔就查不到原本的 `yes`/`no`（測試曾因此抓到按鈕 key 缺漏）。
+- 尚未做：依距離排序、玩家偏好永久保存（需接 tokaProfiles）、刪除確認改 Modal 表單。
+
 ## 部署後要驗證
 
 1. `/reload` 後後台無 `Text is missing`、無錯誤；各插件載入數量 log 正常。
