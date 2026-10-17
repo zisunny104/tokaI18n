@@ -2,7 +2,7 @@
 
 ## 部署紀錄（2026-10-17，等玩家 /reload 後生效）
 
-已換上 VPS：zero 1.7.22、tokaPortal 2.3.0、tokaWorlds 1.1.0、tokaDisplay 0.2.7、tokaSigns 0.4.0、tokaDiscordLink 0.2.0，另新裝 tokaProfiles 0.2.0。SHA 皆核對一致，舊 jar 與舊 config 在 VPS 的 `/home/codex-editor/stage/migrate-20261017/old5/`。各 repo 已打對應 tag（未 push）。tokaPortal、tokaWorlds 的現有 config 已補上 `reserved-names`。
+已換上 VPS：zero 1.7.22、tokaPortal 2.3.1（主控台也能用 /portal help）、tokaWorlds 1.1.0、tokaDisplay 0.2.7、tokaSigns 0.4.0、tokaDiscordLink 0.2.0，另新裝 tokaProfiles 0.2.0。SHA 皆核對一致，舊 jar 與舊 config 在 VPS 的 `/home/codex-editor/stage/migrate-20261017/old5/`。各 repo 已打對應 tag（未 push）。tokaPortal、tokaWorlds 的現有 config 已補上 `reserved-names`。
 
 **新增（部署前一刻決定）**：保留字 `help list set del edit` 不能當住家、傳送點（tokaPortal）、世界（tokaWorlds，會建議其他名稱）、領地與區域（zero）的名稱；config 的 `reserved-names` 可調（領地與區域是寫死在 zero）。傳送類指令仍保留「先查目標、查不到才顯示說明」作保險。已存在的同名項目不受影響。
 
