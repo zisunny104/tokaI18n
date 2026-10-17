@@ -6,6 +6,11 @@
 
 **新增（部署前一刻決定）**：保留字 `help list set del edit` 不能當住家、傳送點（tokaPortal）、世界（tokaWorlds，會建議其他名稱）、領地與區域（zero）的名稱；config 的 `reserved-names` 可調（領地與區域是寫死在 zero）。傳送類指令仍保留「先查目標、查不到才顯示說明」作保險。已存在的同名項目不受影響。
 
+## 分頁與 /portal help 總覽（tokaPortal 2.4.0 已部署，tokaI18n 0.2.0）
+
+- tokaI18n 新增 `Pager`（分頁）；tokaPortal 的 `/portal help [頁]` 列出所有傳送指令、缺少的 zero 功能（顯示「未啟用：…」），以及已安裝的 tokaWorlds、tokaSigns 指令；每頁行數 config `help-lines-per-page`（預設 8）。主控台也可用。
+- 其餘插件的 help 目前仍是單頁；內容變長時改用 `Pager`，頁尾 key 用 `ui.page.footer`。下一步建議：tokaSigns（`help.sign` 已 23 行）、tokaDiscordLink、tokaWorlds 先改成分頁。
+
 ## 部署後要驗證
 
 1. `/reload` 後後台無 `Text is missing`、無錯誤；各插件載入數量 log 正常。
