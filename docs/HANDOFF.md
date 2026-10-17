@@ -30,7 +30,14 @@ key 分區 `cmd / help / msg / err / ui / log / status`；色碼：文字 `§b`�
 
 子任務自行新增了兩個分區，建議收進慣例表：`param.*`（參數名稱，tokaPortal）、`cli.*`（命令列工具輸出，tokaWorlds）；tokaDiscordLink 另用 `discord.*`（送到 Discord 的文字，不用 § 色碼，Discord 只認 Markdown）。
 
-## 待你決定（跨插件重點，完整清單在各 docs/I18N.md）
+## 已決定（2026-10-17）
+
+- 錯誤／警告用亮色 `§c`／`§e`，玩家與後台一致（已寫進 README 慣例）。
+- 新增的前綴與顏色保留。
+- `/display help` 先只給 OP，之後開放再調整內容。
+- `help` 衝突：tokaPortal 的 `/tpa /tpl /tph /tpp /tpw` 先查目標，有叫 help 的目標就傳送，查不到才顯示說明（Nukkit 會吃掉引號，無法用 `"help"` 繞過）。`/home` 無名稱目標，不衝突。
+
+## 其餘待你決定（完整清單在各 docs/I18N.md）
 
 1. **錯誤色統一 `§c`**：tokaWorlds 原本全用 `§e`，已改成 `§c`；tokaDiscordLink 的後台儲存錯誤用 `§c`。慣例表沒有「後台錯誤色」，要不要補。
 2. **原本無色的玩家訊息現在都上色並加前綴**：tokaPortal `§7[傳送]§r`、tokaSigns `§7[告示]§r`、tokaProfiles `§7[玩家資料]§r`，tokaDiscordLink 的遊戲內訊息也上色。畫面會有差異，部署前先看一次。
