@@ -20,12 +20,4 @@ List<String> help = messages.lines("help.home");      // 多行說明，格式�
 - `messages.install("config.yml")`：把設定檔範本放進資料夾，保留既有檔案。
 - `Pager.of(全部行, 每頁行數, 頁碼)` 回傳該頁的行、頁碼與總頁數；`Pager.parse(參數, 預設)` 把指令參數轉成頁碼。頁尾文字慣例 key 為 `ui.page.footer`。
 
-## 版本紀錄
-
-- 0.2.3：新增 NumberText.withCommas(long)，千分位格式不受伺服器地區影響。
-- 0.2.2：YAML 改用 SafeConstructor；查字與參數替換少做不必要的工作；install 拒絕離開資料夾的檔名。
-- 0.2.1：Pager 可用於任何清單。
-- 0.2.0：新增 Pager，用於 help 與清單分頁。
-- 0.1.0：共用文字（位置參數）、語言退回、可覆蓋的語系檔。
-
 授權：MIT。
